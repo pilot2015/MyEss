@@ -1,0 +1,49 @@
+package org.pilot.struts;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.validator.DynaValidatorForm;
+
+public class LoginAction extends Action {
+
+	public ActionForward execute(ActionMapping actionMapping, ActionForm actionForm, 
+	        HttpServletRequest request, HttpServletResponse response)
+	        throws Exception
+	    {
+	        DynaValidatorForm form = (DynaValidatorForm)actionForm;
+	        HttpSession session = request.getSession();
+	        String user = (String)form.get("username");
+	        String pass = (String)form.get("password");
+	        
+	            //int result = mgr.validLogin(user, pass);
+
+	            if (true)
+	            {
+	                session.setAttribute("user" , user);
+	                session.setAttribute("level" , "emp");
+	                request.setAttribute("result" , "您已经成功登陆系统");
+	                return actionMapping.findForward("emp");
+	            }
+	            else if (false)
+	            {
+	                session.setAttribute("user" , user);
+	                session.setAttribute("level" , "mgr");
+	                request.setAttribute("result" , "您已经成功登陆系统");
+	                return actionMapping.findForward("mgr");
+	            }
+	            else
+	            {
+	                request.setAttribute("errMsg" , "用户名/密码不匹配");
+	                return actionMapping.findForward("failure");
+	            }
+	       
+
+
+	    }
+}

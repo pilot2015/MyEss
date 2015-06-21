@@ -1,0 +1,22 @@
+package org.pilot.service;
+
+import org.pilot.dao.ExpenseDao;
+import org.pilot.dao.UserDao;
+
+public class UserManagerImpl {
+	
+	private UserDao userDao;
+	
+	private ExpenseDao expenseDao;
+	
+	public void setExpenseDao(ExpenseDao expenseDao)
+    {
+        this.expenseDao = expenseDao;
+    }
+	
+	public void setUserExpenseDao(ExpenseDao userDao)
+    {
+        this.userDao = userDao;
+    }
+
+}

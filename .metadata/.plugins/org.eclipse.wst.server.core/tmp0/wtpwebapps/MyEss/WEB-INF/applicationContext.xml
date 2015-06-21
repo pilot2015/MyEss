@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+		<property name="jdbcUrl">
+            <value>jdbc:mysql://localhost/hrSystem</value>
+        </property>
+		<property name="user">
+            <value>root</value>
+        </property>
+		<property name="password">
+            <value>123456</value>
+        </property>
+		<property name="maxPoolSize">
+            <value>40</value>
+        </property>
+		<property name="minPoolSize">
+            <value>1</value>
+        </property>
+		<property name="initialPoolSize">
+            <value>1</value>
+        </property>
+		<property name="maxIdleTime">
+            <value>20</value>
+        </property>
+	</bean>
+
+    <!--定义了Hibernate的SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+        <property name="mappingResources">
+            <list>
+				<value>Employee.hbm.xml</value>
+				<value>Attend.hbm.xml</value>
+				<value>AttendType.hbm.xml</value>
+				<value>Application.hbm.xml</value>
+				<value>CheckBack.hbm.xml</value>
+				<value>Payment.hbm.xml</value>
+				<value>Expense.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.jdbc.batch_size">20</prop> 
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+	    <!--  事务拦截器bean需要依赖注入一个事务管理器 -->
+        <property name="transactionManager" ref="transactionManager"/>
+    	<property name="transactionAttributes">
+		    <!--  下面定义事务传播属性-->
+		    <props>
+			    <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+		    	<prop key="*">PROPAGATION_REQUIRED</prop>
+		    </props>
+	    </property>
+	</bean>
+
+    <bean id="managerTemplate" abstract="true" lazy-init="true">
+        <property name="appDao">
+            <ref bean="appDao"/>
+        </property>
+        <property name="attendDao">
+            <ref bean="attendDao"/>
+        </property>
+        <property name="typeDao">
+            <ref bean="attendTypeDao"/>
+        </property>
+        <property name="checkDao">
+            <ref bean="checkDao"/>
+        </property>
+        <property name="empDao">
+            <ref bean="employeeDao"/>
+        </property>
+        <property name="mgrDao">
+            <ref bean="managerDao"/>
+        </property>
+        <property name="payDao">
+            <ref bean="payDao"/>
+        </property>
+        <property name="expenseDao">
+            <ref bean="expenseDao"/>
+        </property>
+	</bean>
+
+    <bean id="mgrManager" class="org.yeeku.service.MgrManagerImpl" parent="managerTemplate"/>
+    <bean id="empManager" class="org.yeeku.service.EmpManagerImpl" parent="managerTemplate"/>
+
+    <!-- 定义BeanNameAutoProxyCreator-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	    <!--  指定对满足哪些bean name的bean自动生成业务代理 -->
+	    <property name="beanNames">
+            <!--  下面是所有需要自动创建事务代理的bean-->
+            <list>
+                <value>mgrManager</value>
+                <value>empManager</value>
+            </list>
+            <!--  此处可增加其他需要自动创建事务代理的bean-->
+	    </property>
+        <!--  下面定义BeanNameAutoProxyCreator所需的事务拦截器-->
+        <property name="interceptorNames">
+            <list>
+                <!-- 此处可增加其他新的Interceptor -->
+                <value>transactionInterceptor</value> 
+            </list>
+        </property>
+    </bean>
+
+	<bean id="cronTriggerPay" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailBean">
+                <property name="jobClass">
+                    <value>org.yeeku.schedule.PayJob</value>
+                </property>
+				<property name="jobDataAsMap">
+					<map>
+						<entry key="empMgr">
+							 <ref local="empManager"/>
+						</entry>	
+					</map>
+				</property>
+            </bean>
+	    </property>
+	    <property name="cronExpression">
+		    <value>0 0 2 1 * ? *</value>
+	    </property>
+	</bean>
+
+	<bean id="cronTriggerPunch" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailBean">
+                <property name="jobClass">
+                    <value>org.yeeku.schedule.PunchJob</value>
+                </property>
+				<property name="jobDataAsMap">
+					<map>
+						<entry key="empMgr">
+							 <ref local="empManager"/>
+						</entry>	
+					</map>
+				</property>
+            </bean>
+	    </property>
+	    <property name="cronExpression">
+		    <value>0 0 7,12 ? * MON-FRI</value>
+	    </property>
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="cronTriggerPunch"/>
+				<ref local="cronTriggerPay"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>

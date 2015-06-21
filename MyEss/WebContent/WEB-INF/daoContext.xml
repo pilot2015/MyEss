@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="daoTemplate" abstract="true" lazy-init="true">
+		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+	</bean>
+
+	<bean id="employeeDao" class="org.yeeku.dao.EmployeeDaoHibernate" parent="daoTemplate"/>
+
+	<bean id="managerDao" class="org.yeeku.dao.ManagerDaoHibernate" parent="daoTemplate"/>
+
+	<bean id="attendDao" class="org.yeeku.dao.AttendDaoHibernate" parent="daoTemplate"/>
+
+	<bean id="attendTypeDao" class="org.yeeku.dao.AttendTypeDaoHibernate" parent="daoTemplate"/>
+
+	<bean id="appDao" class="org.yeeku.dao.ApplicationDaoHibernate" parent="daoTemplate"/>
+
+	<bean id="checkDao" class="org.yeeku.dao.CheckBackDaoHibernate" parent="daoTemplate"/>
+
+	<bean id="payDao" class="org.yeeku.dao.PaymentDaoHibernate" parent="daoTemplate"/>
+	
+	<bean id="expenseDao" class="org.yeeku.dao.ExpenseDaoHibernate" parent="daoTemplate"/>
+
+
+</beans>

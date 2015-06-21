@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean name="/logout" class="org.pilot.struts.LogoutAction" singleton="false"/>      
+
+    <bean name="empActionTemplate" abstract="true" singleton="false">
+        <property name="mgr">
+            <ref bean="empManager"/>
+        </property>
+    </bean>
+    <!--  处理登陆-->
+    <bean name="/login" class="org.pilot.struts.LoginAction" parent="empActionTemplate"/>
+	  
+    <!--  员工提交报销  -->
+    <bean name="/doExpense" class="org.pilot.struts.ProcessExpenseAction" parent="empActionTemplate"/>       
+    
+     <bean name="/viewExpense" class="org.pilot.struts.ViewExpenseAction" parent="mgrActionTemplate"/>
+     <bean name="/checkExpense" class="org.pilot.struts.CheckExpenseAction" parent="mgrActionTemplate"/>
+    
+
+</beans>

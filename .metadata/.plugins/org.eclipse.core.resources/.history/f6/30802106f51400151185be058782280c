@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean name="/logout" class="org.yeeku.struts.LogoutAction" singleton="false"/>
+
+        <!--====================================================================-->
+        <!--====================================================================-->
+        <!--============================下面是员工的Action========================-->
+        <!--====================================================================-->
+        <!--====================================================================-->
+
+    <bean name="empActionTemplate" abstract="true" singleton="false">
+        <property name="mgr">
+            <ref bean="empManager"/>
+        </property>
+    </bean>
+    <!--  处理登陆-->
+    <bean name="/processLogin" class="org.yeeku.struts.LoginAction" parent="empActionTemplate"/>
+	<!--  进入打卡-->
+    <bean name="/empPunch,/mgrPunch" class="org.yeeku.struts.PunchAction" parent="empActionTemplate"/>
+    <!--  员工打卡-->
+    <bean name="/processEmpPunch,/processMgrPunch" class="org.yeeku.struts.ProcessPunchAction" parent="empActionTemplate"/>
+    <!--  员工自己查看工资-->
+    <bean name="/viewEmpSalary,/viewMgrSalary" class="org.yeeku.struts.ViewSalaryAction" parent="empActionTemplate"/>
+    <!--  员工自己查看出勤异动-->
+    <bean name="/viewUnPunch" class="org.yeeku.struts.ViewUnAttendAction" parent="empActionTemplate"/>
+	<!--  员工进入出勤异动申请  -->
+    <bean name="/appChange" class="org.yeeku.struts.AppChangeAction" parent="empActionTemplate"/>
+	<!--  处理员工的出勤异动申请  -->
+    <bean name="/processApp" class="org.yeeku.struts.ProcessAppAction" parent="empActionTemplate"/>
+    <!--  员工提交报销  -->
+    <bean name="/doExpense" class="org.yeeku.struts.ProcessExpenseAction" parent="empActionTemplate"/>
+
+
+        <!--====================================================================-->
+        <!--====================================================================-->
+        <!--============================下面是经理的Action========================-->
+        <!--====================================================================-->
+        <!--====================================================================-->
+
+    <bean name="mgrActionTemplate" abstract="true" singleton="false">
+        <property name="mgr">
+            <ref bean="mgrManager"/>
+        </property>
+    </bean>
+	<!--  经理查看部门工资  -->
+    <bean name="/viewDeptSal" class="org.yeeku.struts.ViewDeptAction" parent="mgrActionTemplate"/>
+	<!--  经理增加员工  -->
+    <bean name="/processAdd" class="org.yeeku.struts.AddEmpAction" parent="mgrActionTemplate"/>
+	<!--  经理查看员工  -->
+    <bean name="/viewEmp" class="org.yeeku.struts.ViewEmpAction" parent="mgrActionTemplate"/>
+	<!--  经理查看申请  -->
+    <bean name="/viewApp" class="org.yeeku.struts.ViewAppAction" parent="mgrActionTemplate"/>
+	<!--  经理处理申请  -->
+    <bean name="/check" class="org.yeeku.struts.CheckAppAction" parent="mgrActionTemplate"/>
+    
+     <bean name="/viewExpense" class="org.yeeku.struts.ViewExpenseAction" parent="mgrActionTemplate"/>
+     <bean name="/checkExpense" class="org.yeeku.struts.CheckExpenseAction" parent="mgrActionTemplate"/>
+
+
+    <!--  以经理权限拦截器生成代理  -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	    <property name="beanNames">
+            <list>
+                <value>/viewDeptSal</value>
+                <value>/processAdd</value>
+                <value>/viewEmp</value>
+                <value>/check</value>
+            </list>
+	    </property>
+        <property name="interceptorNames">
+            <list>
+                <value>mgrAuthorityInterceptor</value> 
+            </list>
+        </property>
+    </bean>
+
+    <!--  以普通员工权限拦截器生成代理  -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	    <property name="beanNames">
+            <list>
+                <value>/empPunch</value>
+                <value>/processEmpPunch</value>
+                <value>/viewEmpSalary</value>
+                <value>/viewUnPunch</value>
+                <value>/appChange</value>
+                <value>/processApp</value>
+
+            </list>
+	    </property>
+        <property name="interceptorNames">
+            <list>
+                <value>empAuthorityInterceptor</value> 
+            </list>
+        </property>
+    </bean>
+
+    <!-- 定义经理权限检查拦截器 -->
+	<bean id="mgrAuthorityInterceptor" class="org.yeeku.struts.authority.MgrAuthorityInterceptor"/>
+    <!-- 定义普通员工权限检查拦截器 -->
+	<bean id="empAuthorityInterceptor" class="org.yeeku.struts.authority.EmpAuthorityInterceptor"/>
+
+</beans>

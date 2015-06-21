@@ -1,0 +1,77 @@
+<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<title>报销系统</title>
+<link rel="shortcut icon" href="favicon.ico"/> 
+<link rel="stylesheet" href="/WEB-INF/css/expenseLinko.css" type="text/css"/>
+<!--[if IE 7]> <link rel="stylesheet" href="expenseLinko_ie7.css" type="text/css" media="screen" /> <![endif]-->
+<!--[if IE 8]> <link rel="stylesheet" href="expenseLinko_ie8.css" type="text/css" media="screen" /> <![endif]-->
+<!--[if IE 9]> <link rel="stylesheet" href="expenseLinko_ie8.css" type="text/css" media="screen" /> <![endif]-->
+<style type="text/css">
+.adminLink
+{
+  line-height:10px;
+  float:right;
+}  
+</style>
+
+
+</head>
+
+<body onLoad="init()">
+<div id="loginLogo" class="ESSName"><span class="adminLink"><a href="Audit.html">Go to Admin</a></span>
+</div>
+<div id="infoLogin">
+
+<br><label for="email">Welcome to ESS&trade;</label>
+<br>
+  <form method="post" action="dd">
+      <input type="hidden" name="company" value="ess"><input type="hidden" name="database" value>     
+       
+      <label for="email">用户名</label>
+      <input id="email" type="text" name="email" />
+      <label for="password">密码</label>
+      <input id="password" type="password" name="password" />
+      <input id="btEnter" type="submit" value="Login" name="B1">
+  </form>
+
+</div>
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+<script>
+function init() {
+  document.forms[0].action = "ajax/" + "XLogin.jsp";
+  document.forms[0].email.value = "";
+  document.forms[0].password.value = "";
+}
+</script>
+</body>
+</html>

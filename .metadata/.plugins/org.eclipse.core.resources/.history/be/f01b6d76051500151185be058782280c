@@ -1,0 +1,53 @@
+<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
+<%@include file="..\taglibs.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>ESS - Welcome</title>
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="stylesheet" href="../expenseLinko.css" type="text/css">
+<link href="images/css.css" rel="stylesheet" type="text/css">
+<!--[if IE 7]> <link rel="stylesheet" href="../expenseLinko_ie7.css" type="text/css" media="screen" /> <![endif]-->
+<!--[if IE 8]> <link rel="stylesheet" href="../expenseLinko_ie8.css" type="text/css" media="screen" /> <![endif]-->
+<!--[if IE 9]> <link rel="stylesheet" href="../expenseLinko_ie8.css" type="text/css" media="screen" /> <![endif]-->
+<style type="text/css">
+.adminLink
+{
+  line-height:10px;
+  float:right;
+}  
+</style>
+
+
+</head>
+
+<body>
+<%@include file="empheader.jsp"%> 
+<TABLE width=780 align="center" CELLSPACING=0 background="images/bodybg.jpg">
+  <tr height="100">
+	<td>&nbsp;</td>
+  </TR>
+  <tr>
+	<td>
+	<logic:present name="result" scope="request">
+	<div class="mytitle"><bean:write name="result" scope="request"/></div>
+	</logic:present>
+	</td>
+  </TR>
+  <tr height="100">
+	<td>&nbsp;</td>
+  </TR>
+  <tr>
+	<td><bean:write name="user" scope="session"/>£¬»¶Ó­ÄúÊ¹ÓÃJ2EEÈËÁ¦×ÊÔ´¹ÜÀíÏµÍ³£¬ÄúÊÇÆÕÍ¨Ô±¹¤</td>
+  </TR>
+  <tr height="80">
+	<td>&nbsp;</td>
+  </TR>
+</TABLE>
+<%@include file="../footer.jsp"%> 
+</body>
+
+</html>

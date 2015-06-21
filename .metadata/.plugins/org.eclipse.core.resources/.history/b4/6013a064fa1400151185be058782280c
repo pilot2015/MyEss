@@ -1,0 +1,9 @@
+package org.pilot.service;
+
+public class UserManagerImpl {
+	
+	private UserDao userDao;
+	
+	private ExpenseDao expenseDao;
+
+}

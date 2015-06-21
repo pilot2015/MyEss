@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.yeeku.model">
+	<class name="CheckBack" table="check_table">
+
+		<id	name="id" type="integer" column="check_id">
+			<generator class="identity"/>
+		</id>
+
+		<property name="reason" column="check_reason" type="string" length="50"/>
+		<property name="result" column="check_result" type="boolean" length="50" not-null="true"/>
+ 		<many-to-one name="app" column="app_id" not-null="true" unique="true" lazy="false"/>
+ 		<many-to-one name="manager" column="mgr_id" not-null="true" lazy="false"/>
+
+	</class>	
+</hibernate-mapping>

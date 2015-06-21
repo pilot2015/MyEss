@@ -1,0 +1,108 @@
+package org.pilot.model;
+
+
+import java.io.Serializable;
+import java.util.Set;
+import java.util.HashSet;
+/**
+ * @author  yeeku.H.lee kongyeeku@163.com
+ * @version  1.0
+ * <br>Copyright (C), 2005-2008, yeeku.H.Lee
+ * <br>This program is protected by copyright laws.
+ * <br>Program Name:
+ * <br>Date: 
+ */
+public class User implements Serializable
+{
+	private static final long serialVersionUID = 48L;
+
+    private int id;
+    private String name;
+    private String pass;
+    private double salary;
+
+    /*
+    private Set attends = new HashSet();
+    private Set apps = new HashSet();
+    private Set payments = new HashSet();
+    */
+
+    public User()
+    {
+    }
+
+	public User(int id, String name, String pass, double salary 
+				) {
+		this.id = id;
+		this.name = name;
+		this.pass = pass;
+		this.salary = salary;
+	}
+	
+	public void setId(int id) {
+		this.id = id; 
+	}
+
+	public void setName(String name) {
+		this.name = name; 
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass; 
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary; 
+	}
+
+	
+
+	public int getId() {
+		return (this.id); 
+	}
+
+	public String getName() {
+		return (this.name); 
+	}
+
+	public String getPass() {
+		return (this.pass); 
+	}
+
+	public double getSalary() {
+		return (this.salary); 
+	}
+
+		
+
+	public boolean equals (Object obj)
+    {
+		if (null == obj) return false;
+		if (!(obj instanceof User))
+        {
+            return false;
+        }
+		else
+        {
+			User employee = (User) obj;
+			if (null == this.getName() || null == employee.getName() )
+            {
+                return false;
+            }
+			else
+            {
+                return (this.getName().equals(employee.getName()));
+            }
+		}
+	}
+
+	public int hashCode ()
+    {
+		return name.hashCode();
+	}
+
+	public String toString () {
+		return super.toString();
+	}
+
+}

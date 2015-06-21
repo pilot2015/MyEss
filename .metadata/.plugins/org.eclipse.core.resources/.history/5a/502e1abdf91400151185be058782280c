@@ -1,0 +1,101 @@
+package org.pilot.dao;
+
+import java.util.List;
+
+import org.pilot.model.Expense;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+/**
+ * @author  yeeku.H.lee kongyeeku@163.com
+ * @version  1.0
+ * <br>Copyright (C), 2005-2008, yeeku.H.Lee
+ * <br>This program is protected by copyright laws.
+ * <br>Program Name:
+ * <br>Date: 
+ */
+public class ExpenseDaoHibernate extends HibernateDaoSupport implements ExpenseDao
+{
+    /**
+      * 根据id查找异动申请
+      * @param id 需要查找的异动申请id
+      */  
+    public Expense get(Integer id)
+    {
+        return (Expense)getHibernateTemplate().get(Expense.class , id);
+    }
+    /**
+      * 增加异动申请
+      * @param application 需要增加的异动申请
+      */       
+    public void save(Expense expense)
+    {
+        getHibernateTemplate().save(expense);
+    }
+
+    /**
+      * 修改异动申请
+      * @param application 需要修改的异动申请
+      */  
+    public void update(Expense application)
+    {
+        getHibernateTemplate().saveOrUpdate(application);
+    }
+
+    /**
+      * 删除异动申请
+      * @param id 需要删除的异动申请id
+      */  
+    public void delete(Integer id)
+    {
+        getHibernateTemplate().delete(getHibernateTemplate().get(Expense.class , id));
+    }
+
+    /**
+      * 删除异动申请
+      * @param application 需要删除的异动申请
+      */  
+    public void delete(Expense application)
+    {
+        getHibernateTemplate().delete(application);
+    }
+      
+
+    /**
+      * 查询全部异动申请
+      * @return 全部异动申请
+      */ 
+    public List<Expense> findAll()
+    {
+        return (List<Expense>)getHibernateTemplate().find("from Expense");
+    }
+
+    /**
+      * 根据员工查询未处理的异动申请
+      * @param emp 需要查询的员工
+      * @return 该员工对应的未处理的异动申请
+      */ 
+    public List<Expense> findByEmp(Employee emp)
+    {
+    	/*List<Application> apps = (List<Expense>)getHibernateTemplate()
+            .find("from Expense as a where a.attend.employee=?" , emp);
+        if (apps == null || apps.size() < 1 )
+        {
+            return null;
+        }
+        List<Expense> result = new ArrayList<Application>();
+        for (Expense app : apps )
+        {
+            result.add(app);
+        }
+        return result;*/
+    	return null;
+    }
+    
+    public List<Expense>  findByMgr(Employee emp)
+    {
+    	List<Expense> expense = (List<Expense>)getHibernateTemplate()
+                .find("from Expense as a where a.next=?" , emp);
+    	
+    	return expense;
+    }
+}

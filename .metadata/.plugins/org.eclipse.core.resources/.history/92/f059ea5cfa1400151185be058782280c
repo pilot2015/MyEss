@@ -1,0 +1,104 @@
+package org.pilot.dao;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import org.yeeku.model.*;
+import org.yeeku.business.*;
+/**
+ * @author  yeeku.H.lee kongyeeku@163.com
+ * @version  1.0
+ * <br>Copyright (C), 2005-2008, yeeku.H.Lee
+ * <br>This program is protected by copyright laws.
+ * <br>Program Name:
+ * <br>Date: 
+ */
+public class UserDaoHibernate extends HibernateDaoSupport implements UserDao
+{
+    /**
+      * 根据id查找员工
+      * @param id 需要查找的员工id
+      */  
+    public User get(Integer id)
+    {
+        return (User)getHibernateTemplate().get(User.class , id);
+    }
+    /**
+      * 增加员工
+      * @param emp 需要增加的员工
+      */       
+    public void save(User emp)
+    {
+        getHibernateTemplate().save(emp);
+    }
+
+    /**
+      * 修改员工
+      * @param emp 需要修改的员工
+      */  
+    public void update(User emp)
+    {
+        getHibernateTemplate().saveOrUpdate(emp);
+    }
+
+    /**
+      * 删除员工
+      * @param id 需要删除的员工id
+      */  
+    public void delete(Integer id)
+    {
+        getHibernateTemplate().delete(getHibernateTemplate().get(User.class , id));
+    }
+
+    /**
+      * 删除员工
+      * @param emp 需要删除的员工
+      */  
+    public void delete(User emp)
+    {
+        getHibernateTemplate().delete(emp);
+    }
+      
+
+    /**
+      * 查询全部员工
+      * @return 全部员工
+      */ 
+    public List<User> findAll()
+    {
+        return (List<User>)getHibernateTemplate().find("from User");
+    }
+
+    /**
+      * 根据用户名和密码查询员工
+      * @param name 员工的用户名
+      * @param pass 员工的密码
+      * @return 符合用户名和密码的员工集合
+      */ 
+    public List<User> findByNameAndPass(String name , String pass)
+    {
+        String[] args = {name,pass};
+        return (List<User>)getHibernateTemplate().find("from User where name = ? and pass = ?" , args);           
+    }
+
+    /**
+      * 根据用户名查询员工
+      * @param name 员工的用户名
+      * @return 符合用户名的员工
+      */ 
+    public User findByName(String name)
+    {
+        List<User> emps = (List<User>)getHibernateTemplate()
+            .find("from User where name = ? " , name);
+        if (emps.size() >= 1)
+        {
+            return emps.get(0);
+        }
+        return null;
+    }
+   
+   
+}

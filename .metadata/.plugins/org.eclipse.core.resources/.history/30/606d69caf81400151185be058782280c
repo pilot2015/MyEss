@@ -1,0 +1,5 @@
+package org.pilot.dao;
+
+public class ExpenseDao {
+
+}

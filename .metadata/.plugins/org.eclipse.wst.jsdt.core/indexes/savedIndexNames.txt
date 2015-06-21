@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+F:\computer\code\MyEss\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2937291956.index
+2422849929.index
+1381458995.index
+694642348.index
+3092041244.index
+3348455257.index
+1006060865.index
