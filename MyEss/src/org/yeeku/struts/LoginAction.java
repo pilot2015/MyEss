@@ -1,16 +1,17 @@
 package org.yeeku.struts;
 
+import static org.yeeku.service.EmpManager.LOGIN_EMP;
+import static org.yeeku.service.EmpManager.LOGIN_MGR;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.struts.action.*;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.DynaValidatorForm;
-
-import org.yeeku.service.EmpManager;
-import org.yeeku.exception.HrException;
 import org.yeeku.struts.base.EmpBaseAction;
-
-import static org.yeeku.service.EmpManager.*;
 /**
  * @author  yeeku.H.lee kongyeeku@163.com
  * @version  1.0

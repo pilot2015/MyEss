@@ -1,7 +1,9 @@
 package org.yeeku.model;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * @author  yeeku.H.lee kongyeeku@163.com

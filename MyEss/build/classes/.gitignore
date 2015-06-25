@@ -1,1 +1,13 @@
+/Application.hbm.xml
+/Attend.hbm.xml
+/AttendType.hbm.xml
+/CheckBack.hbm.xml
+/Employee.hbm.xml
+/Expense.hbm.xml
+/Payment.hbm.xml
+/com/
+/ehcache.xml
+/log4j.properties
 /org/
+/resource.properties
+/resource_zh.properties
