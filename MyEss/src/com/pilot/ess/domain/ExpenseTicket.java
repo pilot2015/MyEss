@@ -15,7 +15,7 @@ import java.util.List;
 public class ExpenseTicket extends AbstractTicket{
 
 	//具体报销项
-	public List<ExpenseItem> items = new ArrayList<ExpenseItem>();
+	private List<ExpenseItem> items = new ArrayList<ExpenseItem>();
 
 	/**
 	 * @return the items

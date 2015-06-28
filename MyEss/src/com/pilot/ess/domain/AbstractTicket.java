@@ -18,54 +18,93 @@ import org.yeeku.model.Manager;
 public abstract class AbstractTicket {
 	
 	/**
+	 * 报销单ID
+	 */
+	private Integer id;
+	
+	/**
+	 * 版本属性，用作乐观锁
+	 */
+	private int version;
+	
+	/**
 	 * 报销单创建时间：年月日
 	 */
-	public Date date;
+	private Date date;
 	
 	/**
 	 * 合计
 	 */
-	public float total;
+	private double total;
 	
 	/**
 	 * 备注
 	 */
-	public String remark;
+	private String remark;
 	
 	/**
 	 * 标记申请单的状态
 	 */
-	public TicketStatus status;
+	private TicketStatus status;
 	
 	/**
 	 * 当前处理人
 	 */
-	public Manager currentHandler;
+	private Manager currentHandler;
 	
 	/**
 	 * 记录领导审批的批注，可能会有多级领导审批
 	 */
-	public List<Comment> comments = new ArrayList<Comment>();
+	private List<Comment> comments = new ArrayList<Comment>();
 		
 	/**
 	 * 原借款
 	 */
-	public float loan;
+	private double loan;
 	
 	/**
 	 * 应退余额
 	 */
-	public float refund;
+	private double refund;
 	
 	/**
 	 * 提交人
 	 */
-	public Employee submitter;
+	private Employee submitter;
 	
 	/**
 	 * 领款人
 	 */
-	public Employee payee;
+	private Employee payee;
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
+	/**
+	 * @return the version
+	 */
+	public int getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	/**
 	 * @return the date
@@ -84,14 +123,14 @@ public abstract class AbstractTicket {
 	/**
 	 * @return the total
 	 */
-	public float getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
 	/**
 	 * @param total the total to set
 	 */
-	public void setTotal(float total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
@@ -138,30 +177,44 @@ public abstract class AbstractTicket {
 	}
 
 	/**
+	 * @return the comments
+	 */
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	/**
+	 * @param comments the comments to set
+	 */
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	/**
 	 * @return the loan
 	 */
-	public float getLoan() {
+	public double getLoan() {
 		return loan;
 	}
 
 	/**
 	 * @param loan the loan to set
 	 */
-	public void setLoan(float loan) {
+	public void setLoan(double loan) {
 		this.loan = loan;
 	}
 
 	/**
 	 * @return the refund
 	 */
-	public float getRefund() {
+	public double getRefund() {
 		return refund;
 	}
 
 	/**
 	 * @param refund the refund to set
 	 */
-	public void setRefund(float refund) {
+	public void setRefund(double refund) {
 		this.refund = refund;
 	}
 
@@ -192,4 +245,5 @@ public abstract class AbstractTicket {
 	public void setPayee(Employee payee) {
 		this.payee = payee;
 	}
+
 }

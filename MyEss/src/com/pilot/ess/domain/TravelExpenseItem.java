@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class TravelExpenseItem {
 	
-	public TravelItem travelItem;
+	private TravelItem travelItem;
 	
-	public List<TransportItem> transportItems = new ArrayList<TransportItem>();
+	private List<TransportItem> transportItems = new ArrayList<TransportItem>();
 	
-	public MealItem mealItem;
+	private MealItem mealItem;
 	
-	public float hotel;
+	private float hotel;
 }

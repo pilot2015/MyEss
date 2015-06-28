@@ -15,17 +15,17 @@ public class ExpenseItem {
 	/**
 	 * 费用产生时间
 	 */
-	public Date date;
+	private Date date;
 	
 	/**
 	 * 用途
 	 */
-	public String purpose;
+	private String purpose;
 	
 	/**
 	 * 金额
 	 */
-	public float num;
+	private double num;
 
 	/**
 	 * @return the date
@@ -58,16 +58,16 @@ public class ExpenseItem {
 	/**
 	 * @return the num
 	 */
-	public float getNum() {
+	public double getNum() {
 		return num;
 	}
 
 	/**
 	 * @param num the num to set
 	 */
-	public void setNum(float num) {
+	public void setNum(double num) {
 		this.num = num;
 	}
 
-	
+
 }

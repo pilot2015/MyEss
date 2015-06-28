@@ -1,8 +1,10 @@
 package org.yeeku.model;
 
 import java.io.Serializable;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
+
+import com.pilot.ess.domain.Department;
 /**
  * @author  yeeku.H.lee kongyeeku@163.com
  * @version  1.0
@@ -20,6 +22,7 @@ public class Employee implements Serializable
     private String pass;
     private double salary;
     private Manager manager;
+    private Department department;
 
     private Set<Attend> attends = new HashSet<Attend>();
     private Set<Payment> payments = new HashSet<Payment>();
@@ -102,6 +105,21 @@ public class Employee implements Serializable
 		return (this.manager); 
 	}	
 
+	
+	/**
+	 * @return the department
+	 */
+	public Department getDepartment() {
+		return department;
+	}
+
+	/**
+	 * @param department the department to set
+	 */
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	public boolean equals (Object obj)
     {
 		if (null == obj) return false;
@@ -128,8 +146,16 @@ public class Employee implements Serializable
 		return name.hashCode();
 	}
 
-	public String toString () {
-		return super.toString();
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", pass=" + pass
+				+ ", salary=" + salary + ", manager=" + manager
+				+ ", department=" + department + ", attends=" + attends
+				+ ", payments=" + payments + "]";
 	}
+
 
 }

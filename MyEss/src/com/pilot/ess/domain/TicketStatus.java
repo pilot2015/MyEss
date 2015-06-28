@@ -9,5 +9,5 @@ package com.pilot.ess.domain;
  *
  */
 public enum TicketStatus {
-	Draft, Submitted, Approved, Paid;
+	Draft, Submitted, Approved, Paid, Reject;
 }

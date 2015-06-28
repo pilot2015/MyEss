@@ -15,12 +15,12 @@ public class Comment {
 	/**
 	 * 审批的领导
 	 */
-	public Manager manager;
+	private Manager manager;
 	
 	/**
 	 * 审批意见
 	 */
-	public String remark;
+	private String remark;
 
 	/**
 	 * @return the manager
