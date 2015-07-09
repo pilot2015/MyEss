@@ -30,14 +30,14 @@ public class ProcessExpenseAction extends EmpBaseAction
         throws Exception
     {
         DynaValidatorForm form = (DynaValidatorForm)actionForm;
-        String date = (String)form.get("date");
-        String money = (String)form.get("money");
-        String other = (String)form.get("other");
+        String date = (String)form.get("didDate");
+        String money = (String)form.get("num");
+        String purpose = (String)form.get("purpose");
         String mgrName = (String)request.getSession(true).getAttribute("user");
-        boolean result = mgr.addExpense(new java.util.Date(),Integer.parseInt(money),other,mgrName);
+        boolean result = mgr.addExpense(new java.util.Date(),Integer.parseInt(money),purpose,mgrName);
         if (result)
         {
-            request.setAttribute("result" , "您已经申请成功，等待经理审阅 " + date + money + other + mgrName);
+            request.setAttribute("result" , "您已经申请成功，等待经理审阅 " + date + money + purpose + mgrName);
         }
         else
         {

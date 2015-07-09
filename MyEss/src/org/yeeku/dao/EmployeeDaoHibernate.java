@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
 import org.yeeku.model.*;
 import org.yeeku.business.*;
 /**
@@ -108,5 +107,6 @@ public class EmployeeDaoHibernate extends HibernateDaoSupport implements Employe
     public List<Employee> findByMgr(Manager mgr)
     {
         return (List<Employee>)getHibernateTemplate().find("from Employee as e where e.manager = ?" , mgr);
-    }
+    }   
+   
 }

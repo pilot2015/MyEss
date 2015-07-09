@@ -78,19 +78,9 @@ public class ExpenseDaoHibernate extends HibernateDaoSupport implements ExpenseD
       */ 
     public List<Expense> findByEmp(Employee emp)
     {
-    	/*List<Application> apps = (List<Expense>)getHibernateTemplate()
-            .find("from Expense as a where a.attend.employee=?" , emp);
-        if (apps == null || apps.size() < 1 )
-        {
-            return null;
-        }
-        List<Expense> result = new ArrayList<Application>();
-        for (Expense app : apps )
-        {
-            result.add(app);
-        }
-        return result;*/
-    	return null;
+    	    	List<Expense> expense = (List<Expense>)getHibernateTemplate()
+                .find("from Expense as a where a.employee=?" , emp);   
+    	return expense;
     }
     
     public List<Expense>  findByMgr(Employee emp)

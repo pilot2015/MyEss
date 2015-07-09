@@ -205,6 +205,24 @@ public class MgrManagerImpl implements MgrManager
         }
         return result;
     }
+    
+    public List<ExpenseBean> getExpensesByEmployee(String name)throws HrException
+    {
+        Employee emp = empDao.findByName(name);
+        if (emp == null)
+        {
+            throw new HrException("查看部门工资异常");
+        }
+        List<Expense> expenseList =  expenseDao.findByMgr(emp);
+        
+        List<ExpenseBean> result = new ArrayList<ExpenseBean>();        
+        for (Expense e : expenseList)
+        {
+        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney()));            
+        }
+        return result;
+    }
+
 
     /**
       * 处理申请

@@ -16,6 +16,7 @@
 		<table width="60%">
 			<tr>				
 				<td><a href="expense.do">我要报销</a></td>
+				<td><a href="viewExpenseEmp.do">查看我的报销</a></td>
 				<td><a href="logout.do">退出系统</a></td>
 			</tr>
 		</table>	

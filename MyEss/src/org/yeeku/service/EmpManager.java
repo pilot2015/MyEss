@@ -108,5 +108,7 @@ public interface EmpManager
     boolean addApplication(int attId , int typeId , String reason);
     
     boolean addExpense(Date date,int money,String other,String mgrName);
+    
+    public List<ExpenseBean> getExpensesByEmployee(String name)throws HrException;
 
 }

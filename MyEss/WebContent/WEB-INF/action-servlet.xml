@@ -32,7 +32,7 @@
     <bean name="/processApp" class="org.yeeku.struts.ProcessAppAction" parent="empActionTemplate"/>
     <!--  员工提交报销  -->
     <bean name="/doExpense" class="org.yeeku.struts.ProcessExpenseAction" parent="empActionTemplate"/>
-
+    
 
         <!--====================================================================-->
         <!--====================================================================-->
@@ -55,6 +55,8 @@
     <bean name="/viewApp" class="org.yeeku.struts.ViewAppAction" parent="mgrActionTemplate"/>
 	<!--  经理处理申请  -->
     <bean name="/check" class="org.yeeku.struts.CheckAppAction" parent="mgrActionTemplate"/>
+    
+    <bean name="/viewExpenseEmp" class="org.yeeku.struts.ViewExpenseActionEmp" parent="empActionTemplate"/>
     
      <bean name="/viewExpense" class="org.yeeku.struts.ViewExpenseAction" parent="mgrActionTemplate"/>
      <bean name="/checkExpense" class="org.yeeku.struts.CheckExpenseAction" parent="mgrActionTemplate"/>

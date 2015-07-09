@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.yeeku.business.AttendBean;
+import org.yeeku.business.ExpenseBean;
 import org.yeeku.business.PaymentBean;
 import org.yeeku.dao.ApplicationDao;
 import org.yeeku.dao.AttendDao;
@@ -16,6 +17,7 @@ import org.yeeku.dao.EmployeeDao;
 import org.yeeku.dao.ExpenseDao;
 import org.yeeku.dao.ManagerDao;
 import org.yeeku.dao.PaymentDao;
+import org.yeeku.exception.HrException;
 import org.yeeku.model.Application;
 import org.yeeku.model.Attend;
 import org.yeeku.model.AttendType;
@@ -366,5 +368,22 @@ public class EmpManagerImpl implements EmpManager
             e.printStackTrace();
         }
         return false;
+    }
+    
+    public List<ExpenseBean> getExpensesByEmployee(String name)throws HrException
+    {
+        Employee emp = empDao.findByName(name);
+        if (emp == null)
+        {
+            throw new HrException("查看部门工资异常");
+        }
+        List<Expense> expenseList =  expenseDao.findByEmp(emp);
+        
+        List<ExpenseBean> result = new ArrayList<ExpenseBean>();        
+        for (Expense e : expenseList)
+        {
+        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney()));            
+        }
+        return result;
     }
 }

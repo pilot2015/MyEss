@@ -71,5 +71,7 @@ public interface EmployeeDao
       * @return 符合经理下的所有员工
       */ 
     List<Employee> findByMgr(Manager mgr);
+    
+    
 
 }
