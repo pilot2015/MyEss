@@ -201,7 +201,7 @@ public class MgrManagerImpl implements MgrManager
         List<ExpenseBean> result = new ArrayList<ExpenseBean>();        
         for (Expense e : expenseList)
         {
-        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney()));            
+        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney(),e.getState()));            
         }
         return result;
     }
@@ -218,7 +218,7 @@ public class MgrManagerImpl implements MgrManager
         List<ExpenseBean> result = new ArrayList<ExpenseBean>();        
         for (Expense e : expenseList)
         {
-        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney()));            
+        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney(),e.getState()));            
         }
         return result;
     }

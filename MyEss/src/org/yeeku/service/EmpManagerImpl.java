@@ -360,6 +360,7 @@ public class EmpManagerImpl implements EmpManager
         	expense.setMoney(money);
         	expense.setEmployee(empDao.findByName(mgrName));
         	expense.setNext(empDao.findByName(mgrName).getManager());
+        	expense.setState(1);//1是申请未批准；2是申请且批准；3是批准且给钱了；-1是无效值；0是填写未提交，私有状态
             expenseDao.save(expense);
             return true;
         }
@@ -382,7 +383,7 @@ public class EmpManagerImpl implements EmpManager
         List<ExpenseBean> result = new ArrayList<ExpenseBean>();        
         for (Expense e : expenseList)
         {
-        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney()));            
+        	result.add(new ExpenseBean(e.getId(),e.getEmployee().getName(),null,e.getReason(),e.getMoney(),e.getState()));            
         }
         return result;
     }

@@ -5,12 +5,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <title>J2EE人力资源系统</title>
-<link rel="stylesheet" href="css/screen.css" type="text/css"/>
+<link href="images/css.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+<%@include file="empheader.jsp"%> 
 
-<%@include file="../screen.jsp"%> 
+<table width="780" align="center" CELLSPACING=0 background="images/bodybg.jpg">
+<tr>
+<td>
+<br>
+<div width=80% border=0 align="left" cellpadding=0 cellspacing="1" bgcolor="#CCCCCC">
+<form action="doExpense.do" method="post">
+
+
+费用产生时间： <input type="text" name="didDate" value="">
+费用的目的：<input type="text" name="purpose" value="">
+<br/>
+<br/>
+费用的金额: <input type="text" name="num" value="">
+<br/>
+<br/>
+<input type="submit" name="submit" value="提交">
+
+
+</form>
+</div>
+
+</TD>
+</TR>
+</TABLE>
+<%@include file="../footer.jsp"%>
 
 </body>
 </html>

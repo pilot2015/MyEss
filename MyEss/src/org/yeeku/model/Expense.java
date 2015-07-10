@@ -20,17 +20,19 @@ public class Expense implements Serializable
     private Date time;
     private Employee employee;
     private Employee next;
+    private int state;
 
 	public Expense()
 	{
 	}	
 
-	public Expense(int id, Date time, String reason, Employee employee,int money) {
+	public Expense(int id, Date time, String reason, Employee employee,int money,int state) {
 		this.id = id;
 		this.time = time;
 		this.reason = reason;
 		this.employee = employee;
 		this.money = money;
+		this.state = state;
 	}
 	
 	public void setId(int id) {
@@ -39,6 +41,10 @@ public class Expense implements Serializable
 	
 	public void setMoney(int money) {
 		this.money = money; 
+	}
+	
+	public void setState(int state) {
+		this.state = state; 
 	}
 
 	public void setTime(Date time) {
@@ -63,6 +69,10 @@ public class Expense implements Serializable
 	
 	public int getMoney() {
 		return (this.money); 
+	}
+	
+	public int getState() {
+		return (this.state); 
 	}
 	
 

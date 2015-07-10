@@ -22,19 +22,22 @@ public class ExpenseBean implements Serializable
     private Date time;
     private String reason;
     private int money;
+    private int state;
 
 
     private ExpenseBean()
     {
     }
+    
 
 
-	public ExpenseBean(int id ,String emp, Date time, String reason,int money) {
+	public ExpenseBean(int id ,String emp, Date time, String reason,int money,int state) {
         this.id = id;
 		this.emp = emp;
 		this.time = time;
 		this.reason = reason;
 		this.money = money;
+		this.state = state;
 	}
 
 	public void setId(int id) {
@@ -43,6 +46,10 @@ public class ExpenseBean implements Serializable
 	
 	public void setMoney(int money) {
 		this.money = money; 
+	}
+	
+	public void setState(int state) {
+		this.state = state; 
 	}
 	
 	public void setEmp(String emp) {
@@ -65,6 +72,10 @@ public class ExpenseBean implements Serializable
 	
 	public int getMoney() {
 		return money; 
+	}
+	
+	public int getState() {
+		return state; 
 	}
 
 	public String getEmp() {

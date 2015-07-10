@@ -27,6 +27,7 @@
     <td bgcolor="#FFFFFF"><b>时间</b></td>
     <td bgcolor="#FFFFFF"><b>金额</b></td>
     <td bgcolor="#FFFFFF"><b>报销事项</b></td>
+    <td bgcolor="#FFFFFF"><b>当前状态</b></td>
     <td bgcolor="#FFFFFF">&nbsp;</td>
   </tr>
 <logic:iterate id="item" name="expense" indexId="index">
@@ -35,6 +36,7 @@
     <td bgcolor="#FFFFFF"><bean:write name="item" property="time"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="money"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="reason"/></td>
+    <td bgcolor="#FFFFFF"><bean:write name="item" property="state"/></td>
     <td bgcolor="#FFFFFF">
 	<a href='checkExpense.do?result=pass&appid=<bean:write name="item" property="id"/>'>通过</a>&nbsp;&nbsp;
 	<a href='checkExpense.do?result=deny&appid=<bean:write name="item" property="id"/>'>拒绝</a>
