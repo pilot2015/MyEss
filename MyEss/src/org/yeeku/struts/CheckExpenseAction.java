@@ -27,16 +27,16 @@ public class CheckExpenseAction extends MgrBaseAction
     {
         String mgrName = (String)request.getSession(true).getAttribute("user");
 
-        String appid = request.getParameter("appid");
+        String expenseid = request.getParameter("expenseid");
 
         String result = request.getParameter("result");
         if (result.equals("pass"))
         {
-            mgr.check(Integer.parseInt(appid), mgrName, true);
+            mgr.checkExpense(Integer.parseInt(expenseid), mgrName, true);
         }
         else if (result.equals("deny"))
         {
-              mgr.check(Integer.parseInt(appid), mgrName, false);          
+              mgr.checkExpense(Integer.parseInt(expenseid), mgrName, false);          
         }
         else
         {

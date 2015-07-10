@@ -38,8 +38,8 @@
     <td bgcolor="#FFFFFF"><bean:write name="item" property="reason"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="state"/></td>
     <td bgcolor="#FFFFFF">
-	<a href='checkExpense.do?result=pass&appid=<bean:write name="item" property="id"/>'>通过</a>&nbsp;&nbsp;
-	<a href='checkExpense.do?result=deny&appid=<bean:write name="item" property="id"/>'>拒绝</a>
+	<a href='checkExpense.do?result=pass&expenseid=<bean:write name="item" property="id"/>'>通过</a>&nbsp;&nbsp;
+	<a href='checkExpense.do?result=deny&expenseid=<bean:write name="item" property="id"/>'>拒绝</a>
 	</td>
   </tr>
 </logic:iterate>

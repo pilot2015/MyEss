@@ -56,4 +56,6 @@ public interface MgrManager
       * @param result ÊÇ·ñÍ¨¹ý
       */
     void check(int appid, String mgrName, boolean result);
+    
+    void checkExpense(int appid, String mgrName, boolean result);
 }

@@ -255,4 +255,24 @@ public class MgrManagerImpl implements MgrManager
             appDao.save(app);
         }
     }
+    
+    public void checkExpense(int expenseid, String mgrName, boolean result)
+    {
+        Manager mgr = mgrDao.findByName(mgrName);
+        Expense exp = expenseDao.get(expenseid);
+        
+        if (result)       
+        {
+            
+            exp.setState(2);
+            expenseDao.save(exp);
+            
+
+        }
+        else
+        {
+        	exp.setState(0);
+            expenseDao.save(exp);
+        }
+    }
 }
