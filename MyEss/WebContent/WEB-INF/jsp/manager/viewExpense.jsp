@@ -1,11 +1,16 @@
 <%@ page contentType="text/html; charset=gb2312" language="java" import="org.yeeku.business.*" errorPage="../error.jsp" %>
 <%@include file="../taglibs.jsp"%>
+<%@ page import="org.yeeku.model.*" import = "java.util.*" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
    <title>处理报销费用</title>
    <link href="images/css.css" rel="stylesheet" type="text/css">
+   <%!
+       String stateString="";
+       int state = 0;
+   %>
 </head>
 <body>
 <logic:present name="result" scope="request">
@@ -30,13 +35,37 @@
     <td bgcolor="#FFFFFF"><b>当前状态</b></td>
     <td bgcolor="#FFFFFF">&nbsp;</td>
   </tr>
+  <%
+  List<ExpenseBean> el = (List<ExpenseBean>)request.getAttribute("expense");
+     for(ExpenseBean e:el){
+    	 out.println(e.getState()+ "dingwei");
+     }
+  %>
 <logic:iterate id="item" name="expense" indexId="index">
   <tr class="pt9" height="24">
     <td bgcolor="#FFFFFF"><bean:write name="item" property="emp"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="time"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="money"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="reason"/></td>
-    <td bgcolor="#FFFFFF"><bean:write name="item" property="state"/></td>
+    <%
+        state = ((ExpenseBean)item).getState();
+    
+        if(state==1){
+        	stateString="提交未批准";
+        }
+        else if(state ==2){
+        	stateString="已经批准，等待收钱";
+        }else if(state==0){
+        	stateString="保存未提交";
+        }else if(state==3){
+        	stateString="钱已经发了，报销结束";
+        }else{
+        	stateString="未知状态";
+        }
+        
+    %>
+    <td bgcolor="#FFFFFF"><%=stateString %></td>
+    
     <td bgcolor="#FFFFFF">
 	<a href='checkExpense.do?result=pass&expenseid=<bean:write name="item" property="id"/>'>通过</a>&nbsp;&nbsp;
 	<a href='checkExpense.do?result=deny&expenseid=<bean:write name="item" property="id"/>'>拒绝</a>

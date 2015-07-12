@@ -18,14 +18,15 @@
 <div width=80% border=0 align="left" cellpadding=0 cellspacing="1" bgcolor="#CCCCCC">
 <form action="doExpense.do" method="post">
 
-
-费用产生时间： <input type="text" name="didDate" value="">
-费用的目的：<input type="text" name="purpose" value="">
+<div id="expenseItem">
+费用产生时间： <input type="text" name="didDate" value=""/>
+费用的目的：<input type="text" name="purpose" value=""/>
+费用的金额: <input type="text" name="num" value=""/>
+提交发票:   <input type="file" name="file" value="浏览"/>
 <br/>
 <br/>
-费用的金额: <input type="text" name="num" value="">
-<br/>
-<br/>
+</div>
+<input type="button" name="" value="添加新的报销项" onClick="addNewExpenseItem()"/>
 <input type="submit" name="submit" value="提交">
 
 
@@ -37,5 +38,16 @@
 </TABLE>
 <%@include file="../footer.jsp"%>
 
+
+<script>
+
+function addNewExpenseItem(){
+	var expItem = document.getElementById("expenseItem");
+	var cloneExpItem = expItem.cloneNode(true);
+	cloneExpItem.setAttribute("id","expenseItem1")
+	expItem.appendChild(cloneExpItem);
+}
+
+</script>
 </body>
 </html>
