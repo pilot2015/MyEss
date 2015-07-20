@@ -33,6 +33,10 @@
 <logic:iterate id="item" name="expense" indexId="index">
   <tr class="pt9" height="24">
     <td bgcolor="#FFFFFF"><bean:write name="item" property="emp"/></td>
+    <%
+        ExpenseBean eb = (ExpenseBean)item;
+        //String date = String.valueof(eb.getTime().getDate());
+    %>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="time"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="money"/></td>
     <td bgcolor="#FFFFFF"><bean:write name="item" property="reason"/></td>
