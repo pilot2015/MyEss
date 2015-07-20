@@ -1,0 +1,7 @@
+<classpath>
+  <container id="MyEss!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="F:/办公自动化/MyEss/MyEss/WebContent/WEB-INF/lib/struts.jar">
+      <source-attachment-path>D:/工具/structs/struts2.zip</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

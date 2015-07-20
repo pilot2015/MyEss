@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [21/Jul/2015:00:01:14 +0800] "POST /MyEss/doExpense.do?method=woshishui HTTP/1.1" 200 3129
+0:0:0:0:0:0:0:1 - - [21/Jul/2015:00:01:14 +0800] "GET /MyEss/images/images/bg.jpg HTTP/1.1" 404 1003

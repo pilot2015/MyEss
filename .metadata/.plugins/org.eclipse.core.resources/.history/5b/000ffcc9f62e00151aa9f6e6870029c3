@@ -1,0 +1,64 @@
+<%@ page contentType="text/html; charset=gb2312" language="java" import="java.sql.*" errorPage="" %>
+<%@include file="..\taglibs.jsp"%> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>J2EE人力资源系统</title>
+</head>
+
+<body>
+
+
+
+
+
+<form id="screenPurpose">          
+          
+          <div class="col1of2">
+			<div class="size1of2">
+				<label for="begdate"> 开始日期 <span>*</span></label>
+				<input class="easyui-datebox" name="begindate" id="begindate" data-options="formatter:myformatter,parser:myparser" style="width:110px"></input>
+			
+				<label for="enddate">结束日期 <span>*</span></label>
+				<input class="easyui-datebox" name="enddate" id="enddate" data-options="formatter:myformatter,parser:myparser" style="width:110px"></input>	
+				
+				<label for="department">报销部门 <span>*</span></label>
+          <select id="department" name="departmentname" xref="department" onChange="setRepChgd()">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="fiat">Fiat</option>
+          <option value="audi">Audi</option>
+          </select> 
+			</div>		             	
+		  </div> 
+		  <br/>
+		  <div> 
+		  <label for="comment">用途 <span>*</span></label>
+			<input type="text" id="comment" name="comment" onChange="setRepChgd()" ></input>        	   
+          </div>   
+          <br/>
+          <div> 
+		  <label for="account">金额 <span>*</span></label>
+			<input type="text" id="account" name="account" onChange="setRepChgd()" ></input>        	   
+          </div> 
+                
+    </form>
+
+
+
+<script>
+
+function addNewExpenseItem(){
+	var expItem = document.getElementById("expenseItem");
+	var cloneExpItem = expItem.cloneNode(true);
+	cloneExpItem.setAttribute("id","expenseItem1")
+	expItem.appendChild(cloneExpItem);
+}
+
+</script>
+</body>
+</html>

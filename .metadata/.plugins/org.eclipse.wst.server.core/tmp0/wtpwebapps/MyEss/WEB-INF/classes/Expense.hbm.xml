@@ -11,10 +11,11 @@
 		</id>
 
 		<property name="money" column="money"	type="integer"/>
-		<property name="time" column="expense_datetime" type="java.util.Date" />
+		<property name="time" column="expense_datetime" />
  		<property name="reason" column="reason" type="string" />
  		<many-to-one name="employee" column="emp_id" not-null="true" lazy="false"/>
  		<many-to-one name="next" column="next_id" not-null="false" lazy="false"/>
+ 		<property name="state" column="state"	type="integer"/>
 
 	</class>	
 </hibernate-mapping>

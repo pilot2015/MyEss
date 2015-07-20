@@ -26,9 +26,10 @@
         </form-bean>
         
         <form-bean name="expenseForm" type="org.apache.struts.validator.DynaValidatorForm">
-            <form-property name="date" type="java.lang.String"/>
-            <form-property name="money" type="java.lang.String"/>
-            <form-property name="other" type="java.lang.String"/>                      
+            <form-property name="didDate" type="java.lang.String"/>
+            <form-property name="purpose" type="java.lang.String"/>
+            <form-property name="num" type="java.lang.String"/>  
+            <form-property name="file" type="java.lang.Object"/>                    
         </form-bean>
 
     </form-beans>
@@ -136,7 +137,8 @@
                 validate="true"
                 input="input">
                 <forward name="result" path="/WEB-INF/jsp/employee/index.jsp"/>
-        </action>
+        </action>       
+        
         
 
         <!--====================================================================-->
@@ -189,17 +191,25 @@
         </action>
         
         
+        <action path="/viewExpenseEmp" scope="request">
+            <forward name="viewExpense" path="/WEB-INF/jsp/employee/viewExpense.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+
+        </action>
+        <!--  处理申请-->
+        
+        
         <action path="/viewExpense" scope="request">
             <forward name="viewExpense" path="/WEB-INF/jsp/manager/viewExpense.jsp"/>
             <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
 
         </action>
-        <!--  处理申请-->
         <action path="/checkExpense" scope="request">
             <forward name="result" path="/viewExpense.do"/>
             <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
 
         </action>
+        
 
 
     </action-mappings>

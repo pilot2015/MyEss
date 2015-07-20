@@ -1,0 +1,9 @@
+#Userdata, #Serverdata { visibility:hidden; display: none;}
+
+* {margin: 0; padding: 0; border:none; text-align:left;}
+
+body{ font-size : 9pt; font-family : arial, Helvetica, sans-serif; color : #333; font-weight : bold; position : relative; left : 0px; line-height:1.5;
+	background-color:#f1f1f1; background-repeat:repeat-x; background-position:top; text-align:center;}
+	
+
+

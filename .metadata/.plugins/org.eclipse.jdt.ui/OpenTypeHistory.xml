@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+<typeInfo handle="=MyEss/F:\/办公自动化\/MyEss\/MyEss\/WebContent\/WEB-INF\/lib\/struts.jar&lt;org.apache.struts.taglib.html(BaseTag.class[BaseTag" modifiers="33" timestamp="1436452194216"/>
+<typeInfo handle="=MyEss/F:\/办公自动化\/MyEss\/MyEss\/WebContent\/WEB-INF\/lib\/commons-beanutils.jar&lt;org.apache.commons.beanutils(DynaBean.class[DynaBean" modifiers="1537" timestamp="1436452194124"/>
+<typeInfo handle="=MyEss/src&lt;org.yeeku.struts{ProcessExpenseAction.java[ProcessExpenseAction" modifiers="1" timestamp="1437057923416"/>
+<typeInfo handle="=MyEss/src&lt;com.pilot.ess.file{UploadServlet.java[UploadServlet" modifiers="1" timestamp="1436975241204"/>
+<typeInfo handle="=MyEss/src&lt;org.yeeku.struts{MyActionServlet.java[MyActionServlet" modifiers="1" timestamp="1437066969487"/>
+<typeInfo handle="=MyEss/src&lt;org.yeeku.struts{CheckExpenseAction.java[CheckExpenseAction" modifiers="1" timestamp="1436542324828"/>
+</typeInfoHistroy>

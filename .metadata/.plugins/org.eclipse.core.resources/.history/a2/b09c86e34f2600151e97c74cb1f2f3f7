@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE struts-config PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+    "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <!-- ======================================== Form Bean Definitions -->
+    <form-beans>
+        <form-bean name="loginForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="username" type="java.lang.String"/>
+            <form-property name="password" type="java.lang.String"/>                               
+        </form-bean>
+
+        <form-bean name="appForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="attId" type="java.lang.String"/>
+            <form-property name="typeId" type="java.lang.String"/>
+            <form-property name="reason" type="java.lang.String"/>                      
+        </form-bean>
+
+        <form-bean name="addForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="empName" type="java.lang.String"/>
+            <form-property name="empPass" type="java.lang.String"/>
+            <form-property name="empSal" type="java.lang.String"/>
+            <form-property name="vercode" type="java.lang.String"/>                      
+        </form-bean>
+        
+        <form-bean name="expenseForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="didDate" type="java.lang.String"/>
+            <form-property name="purpose" type="java.lang.String"/>
+            <form-property name="num" type="java.lang.String"/>                      
+        </form-bean>
+
+    </form-beans>
+
+    <global-exceptions>
+            <exception key="business"  
+                       type="org.yeeku.exception.HrException"
+                       scope="request"
+                       path="/WEB-INF/jsp/error.jsp"/>
+            <exception key="general"  
+                       type="java.lang.Exception"
+                       scope="request"
+                       path="/WEB-INF/jsp/error.jsp"/> 
+    </global-exceptions>
+
+    <!-- =================================== Action Mapping Definitions -->
+    <action-mappings>
+		
+
+        <action path="/logout" scope="request">
+            <forward name="logout" path="/WEB-INF/jsp/main.jsp"/>
+        </action>
+
+        <action path="/login"
+                name="loginForm"
+                scope="request"
+                validate="true"
+                input="input">
+                <forward name="input" path="/WEB-INF/jsp/login.jsp"/>
+                <forward name="mgr" path="/WEB-INF/jsp/manager/index.jsp"/>
+                <forward name="emp" path="/WEB-INF/jsp/employee/index.jsp"/>
+                <forward name="failure" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+        
+        
+
+
+        <!--====================================================================-->
+        <!--====================================================================-->
+        <!--============================下面是员工的Action========================-->
+        <!--====================================================================-->
+        <!--====================================================================-->
+
+		<!--  进入员工打卡  -->
+        <action path="/empPunch" scope="request">
+            <forward name="punch" path="/WEB-INF/jsp/employee/punch.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+		<!--  进入经理打卡  -->
+        <action path="/mgrPunch" scope="request">
+            <forward name="punch" path="/WEB-INF/jsp/manager/punch.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+
+		<!--  处理员工打卡  -->
+        <action path="/processEmpPunch" scope="request" parameter="method">
+            <forward name="punchResult" path="/WEB-INF/jsp/employee/index.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+		<!--  以员工身份 处理经理打卡  -->
+        <action path="/processMgrPunch" scope="request" parameter="method">
+            <forward name="punchResult" path="/WEB-INF/jsp/manager/index.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+
+		<!--  查看员工历史工资  -->
+        <action path="/viewEmpSalary" scope="request">
+            <forward name="viewSalary" path="/WEB-INF/jsp/employee/viewSalary.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+		<!--  以员工身份 查看经理历史工资  -->
+        <action path="/viewMgrSalary" scope="request">
+            <forward name="viewSalary" path="/WEB-INF/jsp/manager/viewSalary.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+
+		<!--  查看员工出勤异动  -->
+        <action path="/viewUnPunch" scope="request">
+            <forward name="viewUn" path="/WEB-INF/jsp/employee/viewUnAttend.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+
+		<!--  员工进入出勤申请  -->
+        <action path="/appChange" scope="request">
+            <forward name="appChange" path="/WEB-INF/jsp/employee/appChange.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+
+		<!--  处理员工出勤申请  -->
+        <action path="/processApp"
+                name="appForm"
+                scope="request"
+                validate="true"
+                input="input">
+                <forward name="input" path="/processApp.do"/>
+                <forward name="result" path="/WEB-INF/jsp/employee/index.jsp"/>
+                <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+        
+        <!--  员工报销  -->
+        <action path="/expense" forward="/WEB-INF/jsp/employee/expense.jsp"/>
+        <action path="/doExpense" 
+                name="expenseForm"
+                scope="request"
+                validate="true"
+                input="input">
+                <forward name="result" path="/WEB-INF/jsp/employee/index.jsp"/>
+        </action>
+        <action path="/viewExpense" forward="/WEB-INF/jsp/employee/expense.jsp"/>
+        
+        
+
+        <!--====================================================================-->
+        <!--====================================================================-->
+        <!--============================下面是经理的Action========================-->
+        <!--====================================================================-->
+        <!--====================================================================-->
+
+
+        <action path="/viewDeptSal" scope="request">
+            <forward name="viewDept" path="/WEB-INF/jsp/manager/viewDeptSal.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+        
+        <!--  简单转发-->
+        <action path="/addEmp" forward="/WEB-INF/jsp/manager/addEmp.jsp"/>
+
+        <!--  处理增加员工-->
+        <action path="/processAdd"
+                name="addForm"
+                scope="request"
+                validate="true"
+                input="input">
+                <forward name="input" path="/WEB-INF/jsp/manager/addEmp.jsp"/>
+                <forward name="failure" path="/WEB-INF/jsp/manager/addEmp.jsp"/>
+                <forward name="success" path="/WEB-INF/jsp/manager/index.jsp"/>
+                <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+        </action>
+
+
+        <!--  查看部门员工-->
+        <action path="/viewEmp" scope="request">
+                <forward name="viewEmp" path="/WEB-INF/jsp/manager/viewEmp.jsp"/>
+                <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+
+        </action>
+
+        <!--  查看全部申请-->
+        <action path="/viewApp" scope="request">
+            <forward name="viewApp" path="/WEB-INF/jsp/manager/viewApps.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+
+        </action>
+
+        <!--  处理申请-->
+        <action path="/check" scope="request">
+            <forward name="result" path="/viewApp.do"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+
+        </action>
+        
+        
+        <action path="/viewExpense" scope="request">
+            <forward name="viewExpense" path="/WEB-INF/jsp/manager/viewExpense.jsp"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+
+        </action>
+        <!--  处理申请-->
+        <action path="/checkExpense" scope="request">
+            <forward name="result" path="/viewExpense.do"/>
+            <forward name="login" path="/WEB-INF/jsp/login.jsp"/>
+
+        </action>
+
+
+    </action-mappings>
+
+	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"
+                inputForward="true" />
+	<!-- ===================================== Message Resources Definitions  -->
+	<message-resources parameter="resource" />
+
+    <!-- ======================================= Plug Ins Configuration -->
+	<!--表示要载入的配置文件，用于整合spring框架-->
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation" 
+            value="/WEB-INF/applicationContext.xml,
+                   /WEB-INF/daoContext.xml,
+                   /WEB-INF/action-servlet.xml"/>
+    </plug-in>
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                                 /WEB-INF/validation.xml" />
+		<set-property property="stopOnFirstError" value="true" />
+	</plug-in>
+
+</struts-config>
+
+
