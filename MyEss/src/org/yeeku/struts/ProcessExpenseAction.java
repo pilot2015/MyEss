@@ -43,7 +43,7 @@ public class ProcessExpenseAction extends EmpBaseAction
         String money = request.getParameter("num");//(String)form.get("num");
         String purpose = request.getParameter("purpose");//(String)form.get("purpose");
         String mgrName = (String)request1.getSession(true).getAttribute("user");        
-        boolean result = mgr.addExpense(new java.util.Date(),Integer.parseInt(money),purpose,mgrName);
+        boolean result = mgr.addExpense(new java.util.Date(date),Integer.parseInt(money),purpose,mgrName);
         if (result)
         {
         	request1.setAttribute("result" , "您已经申请成功，等待经理审阅 " + date + money + purpose + mgrName + uploadFileName[0]);
