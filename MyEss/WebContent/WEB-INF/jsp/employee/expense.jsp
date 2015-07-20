@@ -16,7 +16,7 @@
 <td>
 <br>
 <div width=80% border=0 align="left" cellpadding=0 cellspacing="1" bgcolor="#CCCCCC">
-<form action="doExpense.do" method="post">
+<form action="doExpense.do?method=woshishui" enctype="multipart/form-data" method="post">
 
 <div id="expenseItem">
 费用产生时间： <input type="text" name="didDate" value=""/>

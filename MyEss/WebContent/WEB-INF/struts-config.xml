@@ -28,7 +28,8 @@
         <form-bean name="expenseForm" type="org.apache.struts.validator.DynaValidatorForm">
             <form-property name="didDate" type="java.lang.String"/>
             <form-property name="purpose" type="java.lang.String"/>
-            <form-property name="num" type="java.lang.String"/>                      
+            <form-property name="num" type="java.lang.String"/>  
+            <form-property name="file" type="java.lang.Object"/>                    
         </form-bean>
 
     </form-beans>
